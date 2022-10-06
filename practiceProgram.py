@@ -1,4 +1,4 @@
-import practiceClassKEY as p
+import practiceClass as p
 import csv
 
 
@@ -46,10 +46,10 @@ error message as shown in output.JPG'''
 
 
 #open the csv file in read mode
-
+infile = open('bookings.csv','r')
 
 #create a csv object from the file object from the step above
-
+bookfile = csv.reader(infile, delimiter=',')
 
 
 # use a for loop to iterate through each record in the bookings file
