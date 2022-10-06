@@ -1,3 +1,5 @@
+from datetime import date
+from unicodedata import name
 import practiceClass as p
 import csv
 
@@ -35,6 +37,11 @@ play class that has id 9587
 NOTE: Do not hard code the values to create the instance but use
 keys and values from the dictionary '''
 
+for key in shows:
+    if shows[key]['id'] == 9587:
+        play1 = p.Play(shows[key]['id'], shows[key]['name'], shows[key]['capacity'],shows[key],['event_date'])
+
+ 
 
 
 '''using the bookings.csv file process only those 
@@ -45,12 +52,27 @@ if the play reaches capacity print out a
 error message as shown in output.JPG'''
 
 
+
 #open the csv file in read mode
 infile = open('bookings.csv','r')
 
 #create a csv object from the file object from the step above
 bookfile = csv.reader(infile, delimiter=',')
+next(bookfile)
+#use a for loop to iterate through each record in the bookings file
+for i in bookfile:
+    if float(i[0]) == 9587:
+
+        if play1.get_seatnum()<1:
+            print('**********ERROR**********')
+            print('Guest Name:', i[1])
+            print('Sorry, show:', play1.get_name(),' is sold out')
+            print('*************************')
+            print()
+            print()
+
+        person = p.Booking(i[1],i[2])
+        play1.seats_left()
 
 
-# use a for loop to iterate through each record in the bookings file
 
